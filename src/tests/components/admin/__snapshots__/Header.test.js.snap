@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header correctly 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="content-container"
+  >
+    <div
+      className="header__content"
+    >
+      <Link
+        className="header__title"
+        replace={false}
+        to="/admin/dashboard"
+      >
+        <h1>
+          Admin
+        </h1>
+      </Link>
+      <NavLink
+        activeClassName="active"
+        className="button button--link"
+        to="/admin/categories"
+      >
+        Categories
+      </NavLink>
+      <button
+        className="button button--link"
+        onClick={[Function]}
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</header>
+`;
