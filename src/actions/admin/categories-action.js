@@ -61,7 +61,6 @@ export const setCategories = (categories) => ({
   categories
 });
 
-
 export const startSetCategories = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;

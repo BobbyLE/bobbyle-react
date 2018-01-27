@@ -12,11 +12,30 @@ exports[`should correctly render LoginPage 1`] = `
     >
       Bobby Le
     </h1>
-    <button
-      className="button"
+    <form
+      className="form"
+      onSubmit={[Function]}
     >
-      Login with Google
-    </button>
+      <input
+        className="text-input"
+        onChange={[Function]}
+        placeholder="email"
+        type="text"
+        value=""
+      />
+      <input
+        className="text-input"
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <button
+        className="button"
+      >
+        Login
+      </button>
+    </form>
   </div>
 </div>
 `;

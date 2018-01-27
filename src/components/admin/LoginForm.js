@@ -1,19 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { startLogin, startLoginWithEmail } from '../../actions/admin/auth';
-import LoginForm from './LoginForm';
-
-export class LoginPage extends React.Component{
+export default class LoginForm extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: '',
-      error: ''
+      password: ''
     };
   }
-
   handleForm = (event) => {
     event.preventDefault();
     if(!this.state.email) {
@@ -28,19 +22,10 @@ export class LoginPage extends React.Component{
     }
     else {
       this.setState(()=> ({error: ''}));
-      this.props.startLoginWithEmail(this.state.email, this.state.password)
-        .then(() => {
-          this.setState(()=> ({
-            error: '',
-            email: '',
-            password: ''
-          }));
-        })
-        .catch(function(error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          this.setState(()=> ({error:error.message}));
-        }.bind(this));
+      this.props.onSubmit({
+        email: this.state.email,
+        password: this.state.password
+      });
     }
   }
   onEmailChange = (event) => {
@@ -51,12 +36,9 @@ export class LoginPage extends React.Component{
     const password = event.target.value
     this.setState(()=>({ password }));
   }
-  
   render() {
     return (
-      <div className="box-layout">
-      <div className="box-layout__box">
-        <h1 className="box-layout__title">Bobby Le</h1>
+      <div>
         {this.state.error && <p className="add-option-error">{this.state.error}</p>}
         <form className="form" onSubmit={this.handleForm}>
           <input 
@@ -76,14 +58,6 @@ export class LoginPage extends React.Component{
           <button className="button">Login</button>
         </form>
       </div>
-    </div>
     )
   }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  startLogin: () => dispatch(startLogin()),
-  startLoginWithEmail: (email, password) => dispatch(startLoginWithEmail(email, password))
-});
-
-export default connect(undefined, mapDispatchToProps)(LoginPage);
