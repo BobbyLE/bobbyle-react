@@ -11,6 +11,7 @@ export const Header = ({ startLogout }) => (
           <h1>Admin</h1>
         </Link>
         <NavLink to="/admin/categories" className="button button--link">Categories</NavLink>
+        {/*/<NavLink to="/admin/articles" className="button button--link">Articles</NavLink>*/}
         <button className="button button--link" onClick={startLogout}>Logout</button>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PageHeader from './PageHeader';
+import PageHeader from '../../PageHeader';
 import CategoryList from './CategoryList';
 import AddCategory from './AddCategory';
 

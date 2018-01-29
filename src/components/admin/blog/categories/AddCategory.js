@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CategoryForm from './CategoryForm';
-import { startAddCategory } from '../../actions/admin/categories-action';
+import { startAddCategory } from '../../../../actions/admin/categories-action';
 
 
 export class AddCategory extends React.Component {
