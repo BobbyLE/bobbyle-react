@@ -12,8 +12,13 @@
 
 .button--link {
   background: none;
+  &:hover {
+    color: #a9a9a9;
+  }
 }
-
+.button--link--selected {
+  color: #a9a9a9;
+}
 .button--secondary {
   background: #888;
 }

@@ -24,7 +24,7 @@ const AppRouter = () => (
         <PrivateRoute path="/admin/categories" component={CategoriesPage} exact={true} />
         <PrivateRoute path="/admin/categories/edit/:id" component={EditCategoryPage} />
         <PrivateRoute path="/admin/articles" component={ArticlesPage} exact={true} />
-        {/*<PrivateRoute path="/admin/articles/add" component={ArticlesPage} exact={true} />*/}
+        <PrivateRoute path="/admin/articles/add" component={ArticlesPage} exact={true} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
