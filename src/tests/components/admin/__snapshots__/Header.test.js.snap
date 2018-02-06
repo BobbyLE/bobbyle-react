@@ -20,11 +20,18 @@ exports[`should render Header correctly 1`] = `
         </h1>
       </Link>
       <NavLink
-        activeClassName="active"
+        activeClassName="button button--link--selected"
         className="button button--link"
         to="/admin/categories"
       >
         Categories
+      </NavLink>
+      <NavLink
+        activeClassName="button button--link--selected"
+        className="button button--link"
+        to="/admin/articles"
+      >
+        Articles
       </NavLink>
       <button
         className="button button--link"

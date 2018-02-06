@@ -1,11 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import CategoryForm from './CategoryForm';
 import { startEditCategory, startRemoveCategory } from '../../../../actions/admin/categories-action';
 
 export class EditCategoryPage extends React.Component {
-  
+  static propTypes = {
+    category: PropTypes.object,
+    startEditCategory: PropTypes.func,
+    startRemoveCategory: PropTypes.func
+  }
+  static defaultProps = {
+    category: [],
+    startEditCategory: (()=> {}),
+    startRemoveCategory: (()=>{})
+  }
+
   onSubmit = (category) => {
     this.props.startEditCategory(this.props.category.id, category);
     this.props.history.push('/admin/categories');

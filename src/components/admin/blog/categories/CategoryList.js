@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+
 import CategoryListItem from './CategoryListItem';
 
-export const CategoryList = ({categories}) => (
+export const CategoryList = ({categories = [] }) => (
   <div className="content-container">
     <div className="list-header">
       <div className="show-for-mobile">Categories</div>
@@ -24,6 +27,9 @@ export const CategoryList = ({categories}) => (
     </div>
   </div>
 );
+CategoryListItem.propTypes = {
+  categories: PropTypes.array
+}
 
 const mapStateToProps = (state) => {
   return {

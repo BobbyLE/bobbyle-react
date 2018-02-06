@@ -1,13 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default class CategoryForm extends React.Component {
-  constructor(props) {
-    super(props);  
-    this.state = {
-      categoryName: props.category ? props.category.name : '',
+  static propTypes = {
+    formRight: PropTypes.bool,
+    onSubmit: PropTypes.func
+  }
+  static defaultProps = {
+    formRight: false,
+    onSubmit: (() => {})
+  }
+  state = {
+    categoryName: this.props.category ? this.props.category.name : '',
       error: ''
-    };
   }
   handleForm = (event) => {
     event.preventDefault();

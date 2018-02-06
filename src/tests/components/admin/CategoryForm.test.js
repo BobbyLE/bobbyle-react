@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import CategoryForm from '../../../components/admin/CategoryForm';
+import CategoryForm from '../../../components/admin/blog/categories/CategoryForm';
 
 
 test('should throw error if empty value of category name', () => {

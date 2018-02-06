@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetCategories } from './actions/admin/categories-action';
+import { startSetArticles } from './actions/admin/articles-action';
 import { login, logout } from './actions/admin/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -30,6 +31,7 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user));
+    store.dispatch(startSetArticles());
     store.dispatch(startSetCategories()).then( () => {
       renderApp();
       if (history.location.pathname === '/admin') {
