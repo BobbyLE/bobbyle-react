@@ -11,8 +11,8 @@ const ArticlesPage = () => (
       <div className="page-header__action">
         <Link className="button" to="/admin/articles/add">Add Article</Link>
       </div>
-      <ArticleList />
     </div>
+    <ArticleList />
   </div>
 );
 

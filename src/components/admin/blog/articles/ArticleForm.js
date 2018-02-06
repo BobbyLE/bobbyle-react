@@ -17,7 +17,8 @@ export class ArticleForm extends React.Component {
     article: {
       title: '',
       categories: {},
-      body: ''
+      body: '',
+      published: false
     },
     categories: [],
     getCategories: [],
@@ -27,6 +28,7 @@ export class ArticleForm extends React.Component {
   state = {
     title: this.props.article.title ? this.props.article.title : '',
     body : this.props.article.body ? this.props.article.body : '',
+    published: this.props.article.published ? this.props.article.published : false,
     categoryId: this.props.categoryId ? this.props.article.categoryId : '',
     error: ''
   };
@@ -71,12 +73,14 @@ export class ArticleForm extends React.Component {
       this.props.onSubmit({
         title: this.state.title,
         body: this.state.body,
-        categoryId: this.state.categoryId
+        categoryId: this.state.categoryId,
+        published: this.state.published
       });
       this.setState( () => ({
         title: '',
         categoryId: '',
-        body: ''
+        body: '',
+        published: false
       }));
     }
   }
@@ -91,6 +95,11 @@ export class ArticleForm extends React.Component {
 
   onBodyChange = (value) => {
     this.setState(() => ({body: value }));
+  }
+  onPublishedChange = (event) => {
+    const target = event.target;
+    const published = target.type === 'checkbox' ? target.checked : target.value
+    this.setState(()=> ({ published }));
   }
   renderCategoriesSelect = () => {
     let categoriesForSelect = this.props.categories.map(({id, name}) => {
@@ -125,6 +134,15 @@ export class ArticleForm extends React.Component {
               modules={this.modules}
               formats={this.formats}
               />
+            <label className="label">
+              <input
+                className="input-checkbox"
+                name="published"
+                type="checkbox"
+                checked={this.state.published}
+                onChange={this.onPublishedChange} />
+              <span>published</span>
+            </label>
           <button className="button">Save Article</button>
         </form>
         <h3>Preview:</h3>

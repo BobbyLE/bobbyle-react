@@ -35,14 +35,14 @@ export class EditArticlePage extends React.Component {
         <div className="page-header">
           <div className="content-container">
             <h1 className="page-header__title">Edit Article</h1>
+            <button className="button button--secondary" onClick={this.handleRemoveArticle}>Remove Article</button>
           </div>
         </div>
         <div className="content-container">
           <ArticleForm 
             article={article}
             onSubmit={this.handleEditArticle}
-          />
-          <button className="button button--secondary" onClick={this.handleRemoveArticle}>Remove Article</button>
+          /> 
         </div>
       </div>
     );

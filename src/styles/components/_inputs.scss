@@ -14,3 +14,9 @@
   @extend .text-input;
   height: 10rem;
 }
+
+.label {
+  .input-checkbox {
+    margin-right: 0.7rem;
+  }
+}
