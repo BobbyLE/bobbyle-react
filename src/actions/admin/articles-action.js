@@ -12,13 +12,15 @@ export const startAddArticle = (articleData = {}) => {
     const uid = getState().auth.uid;
     const {
       title = '',
-      categoryId = ''
+      categoryId = '',
+      body
     } = articleData;
     const article = { 
       title, 
       categories : {
         [categoryId]: true
-      } 
+      },
+      body 
     };
 
     // Generate new push ID for the new article
@@ -50,8 +52,8 @@ export const startEditArticle = (id, article) => {
     title: article.title,
     categories: {
       [article.categoryId]: true
-    }
-
+    },
+    body: article.body
   }
   return (dispatch, getState) => {
     const uid = getState().auth.uid;

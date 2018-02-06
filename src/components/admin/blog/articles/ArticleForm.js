@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactQuill from 'react-quill';
 
 import getCategories from '../../../../selectors/selector-article-category'
 import Select from '../../../Select';
@@ -15,18 +16,37 @@ export class ArticleForm extends React.Component {
   static defaultProps = {
     article: {
       title: '',
-      categories: {}
+      categories: {},
+      body: ''
     },
     categories: [],
     getCategories: [],
-    onSubmit: (() => {})
+    onSubmit: (() => {}),
   }
 
   state = {
     title: this.props.article.title ? this.props.article.title : '',
+    body : this.props.article.body ? this.props.article.body : '',
     categoryId: this.props.categoryId ? this.props.article.categoryId : '',
     error: ''
   };
+  // For ReactQuill
+  modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote', 'code-block'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+  }
+  
+  formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video'
+  ]
   
   componentDidMount() {
     //List only self categories
@@ -50,11 +70,13 @@ export class ArticleForm extends React.Component {
       this.setState(()=> ({error: ''}));
       this.props.onSubmit({
         title: this.state.title,
+        body: this.state.body,
         categoryId: this.state.categoryId
       });
       this.setState( () => ({
         title: '',
-        categoryId: ''
+        categoryId: '',
+        body: ''
       }));
     }
   }
@@ -67,6 +89,9 @@ export class ArticleForm extends React.Component {
     this.setState(() => ({ categoryId }));
   }
 
+  onBodyChange = (value) => {
+    this.setState(() => ({body: value }));
+  }
   renderCategoriesSelect = () => {
     let categoriesForSelect = this.props.categories.map(({id, name}) => {
       return {value: id, name: name};
@@ -74,13 +99,6 @@ export class ArticleForm extends React.Component {
 
     if(this.props.categories.length>0) {
       return (
-        // <select value={this.state.categoryId} onChange={this.onCategoryChange}>
-        //   {
-        //     this.props.categories.map(({id, name}) => {
-        //     return <option key={id} value={id}>{name}</option>
-        //   })
-        //   }
-        // </select>
         <Select 
           value={this.state.categoryId} 
           options={categoriesForSelect} 
@@ -102,8 +120,15 @@ export class ArticleForm extends React.Component {
             value={this.state.title}
             onChange={this.onTitleChange}
             />
+            <ReactQuill value={this.state.body}
+              onChange={this.onBodyChange} 
+              modules={this.modules}
+              formats={this.formats}
+              />
           <button className="button">Save Article</button>
         </form>
+        <h3>Preview:</h3>
+        <div dangerouslySetInnerHTML={{__html: this.state.body}}></div>
       </div>
     )
   }
@@ -116,6 +141,5 @@ const mapStateToProps = (state, props) => {
     getCategories: getCategories(state.categories, selfCategories)
   }
 };
-
 
 export default connect(mapStateToProps)(ArticleForm);
