@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 export const DashboardPage = (props) => {
   return (
-    <div>
+    <div className="content-container">
       Welcome {props.currentUser.email}
     </div>
   );
