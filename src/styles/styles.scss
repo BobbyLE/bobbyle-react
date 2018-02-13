@@ -1,5 +1,10 @@
+// Foundation
+@import './foundation/foundation';
+@import './foundation/settings';
+// Base
 @import './base/settings';
 @import './base/base';
+// Components
 @import './components/box-layout';
 @import './components/button';
 @import './components/header';
@@ -11,4 +16,5 @@
 @import './components/visibility';
 @import './components/list';
 @import './components/loader';
+// Third Party Dependencies
 @import '~react-quill/dist/quill.snow.css'
