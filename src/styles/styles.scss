@@ -1,20 +1,14 @@
 // Foundation
 @import './foundation/foundation';
 @import './foundation/settings';
+
 // Base
 @import './base/settings';
 @import './base/base';
+
 // Components
-@import './components/box-layout';
-@import './components/button';
-@import './components/header';
-@import './components/content-container';
-@import './components/page-header';
-@import './components/input-group';
-@import './components/inputs';
-@import './components/form';
-@import './components/visibility';
-@import './components/list';
-@import './components/loader';
-// Third Party Dependencies
+////Admin
+@import './components/admin/*';
+
+// Third Party 
 @import '~react-quill/dist/quill.snow.css'

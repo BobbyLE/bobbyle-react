@@ -40,6 +40,12 @@ module.exports = (env) => {
               options: {
                 sourceMap: true
               }
+            },
+            {
+              loader: 'import-glob-loader',
+              options: {
+                sourceMap: true
+              }
             }
           ]
         })
