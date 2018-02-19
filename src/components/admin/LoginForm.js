@@ -1,13 +1,11 @@
 import React from 'react';
 
 export default class LoginForm extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
-    };
+  state = {
+    email: '',
+    password: ''
   }
+  
   handleForm = (event) => {
     event.preventDefault();
     if(!this.state.email) {
@@ -44,7 +42,7 @@ export default class LoginForm extends React.Component{
           <input 
             type="text" 
             className="text-input" 
-            placeholder="email" 
+            placeholder="Email" 
             onChange={this.onEmailChange}
             value={this.state.email}          
           />

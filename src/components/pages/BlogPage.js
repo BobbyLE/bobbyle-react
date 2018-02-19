@@ -4,9 +4,11 @@ import ArticleList from '../blog/ArticleList';
 
 const BlogPage = () => {
   return (
-    <div className="content-container">
-      <h1>Blog</h1>
-      <ArticleList />
+    <div className="container main blog">
+      <section className="column small-12">
+        <h1>Blog</h1>
+        <ArticleList />
+      </section>
     </div>
   )
 }

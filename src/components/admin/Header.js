@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { startLogout } from '../../actions/admin/auth';
 
 export const Header = ({ startLogout }) => (
-  <header className="admin-header">
+  <header className="header">
     <div className="content-container">
-      <div className="admin-header__content">
-        <Link className="admin-header__title" to="/admin/dashboard">
+      <div className="header__content">
+        <Link className="header__title" to="/admin/dashboard">
           <h1>Admin</h1>
         </Link>
         <NavLink to="/admin/categories" className="button button--link" activeClassName="button button--link--selected">Categories</NavLink>

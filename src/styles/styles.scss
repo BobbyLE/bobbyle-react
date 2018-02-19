@@ -1,6 +1,7 @@
 // Foundation
-@import './foundation/foundation';
 @import './foundation/settings';
+@import './foundation/foundation';
+
 
 // Base
 @import './base/settings';
@@ -11,6 +12,7 @@
 @import './components/loader';
 @import './components/visibility';
 //// Front
+@import './components/front/*';
 //// Admin
 @import './components/admin/*';
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import ShadowWrapper from 'react-shadow-wrapper';
+
+import BodyClass from './BodyClass';
 import Header from '../components//admin/Header';
 
 export const PrivateRoute = ({
@@ -10,10 +13,11 @@ export const PrivateRoute = ({
 }) => (
     <Route {...rest} component={(props) => (
       isAuthenticated ? (
-        <div>
+        <ShadowWrapper>
+          <BodyClass nameClass="admin"/>
           <Header />
           <Component {...props} />
-        </div>
+        </ShadowWrapper>
       ) : (
           <Redirect to="/admin" />
         )

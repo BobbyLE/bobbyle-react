@@ -22,11 +22,11 @@ export class ArticleListItem extends React.Component {
     const { id, categories, title, body, getCategories } = this.props
     const categoryName = getCategories[0].name
     return (
-      <div className="article-list-item">
+      <section className="article-list-item">
         <h2>{title}</h2>
         <h3>{categoryName}</h3>
         <div dangerouslySetInnerHTML={{__html: body}}></div>
-      </div>
+      </section>
     )
   }
 }

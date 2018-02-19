@@ -1,19 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { startLogin, startLoginWithEmail } from '../../actions/admin/auth';
 import LoginForm from './LoginForm';
 
-export class LoginPage extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      error: ''
-    };
+export class LoginPage extends React.Component {
+  static propTypes = {
+    startLoginWithEmail: PropTypes.func
   }
-
+  static defaultProps = {
+    startLoginWithEmail: (() => {})
+  }
+  state = {
+    email: '',
+    password: '',
+    error: ''
+  }
   handleForm = (event) => {
     event.preventDefault();
     if(!this.state.email) {
@@ -82,7 +85,6 @@ export class LoginPage extends React.Component{
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  startLogin: () => dispatch(startLogin()),
   startLoginWithEmail: (email, password) => dispatch(startLoginWithEmail(email, password))
 });
 
