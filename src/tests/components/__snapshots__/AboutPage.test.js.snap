@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render AboutPage 1`] = `
+<div
+  className="container main about"
+>
+  <section
+    className="main__header column"
+  >
+    <GradientTitle
+      beginColor="#009cf3"
+      endColor="#16d6d9"
+    >
+      About
+    </GradientTitle>
+  </section>
+  <section
+    className="presentation column small-12"
+  >
+    <aside
+      className="presentation__photo"
+    />
+    <section
+      className="presentation__text"
+    >
+      <h2
+        className="presentation__text__title"
+      >
+        Bobby Le
+      </h2>
+      <span
+        className="presentation__text__subtitle"
+      >
+        Web Developer, Photographer
+      </span>
+      <h3>
+        Presentation
+      </h3>
+      <p />
+    </section>
+  </section>
+  <section
+    className="experiences column small-12 medium-6"
+  >
+    <h3>
+      Experiences
+    </h3>
+  </section>
+  <section
+    className="skills column small-12 medium-6"
+  >
+    <h3>
+      Skills
+    </h3>
+  </section>
+</div>
+`;

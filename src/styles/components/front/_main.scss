@@ -1,0 +1,21 @@
+.front {
+  background: black;
+  color: #fffffe;
+  a {
+    color: white;
+  }
+  .container {
+    @include flex-grid-row;
+    @include flex-align($x: justify, $y: middle);
+    @include flex-direction(row);
+  }
+
+  .main__title {
+    display: inline-block;
+    .underline-style {
+      height: 0.6rem;
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+}

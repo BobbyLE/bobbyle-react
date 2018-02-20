@@ -1,0 +1,52 @@
+.front {
+  .header {
+    @include flex-grid-row;
+    @include flex-align($x: justify, $y: middle);
+    @include flex-direction(column);
+    @include breakpoint(medium) {
+      @include flex-direction(row);
+    }
+  }
+  .header__logo {
+    @include grid-column(12);
+    @include breakpoint(medium) {
+      @include grid-column(3);
+    }
+  }
+  .header__navbar {
+    @include grid-column(12);
+    @include breakpoint(medium) {
+      @include grid-column(8);
+    }
+  }
+  .header__nav {
+    @include menu-base;
+    justify-content: center;
+    @include breakpoint(medium) {
+      justify-content: flex-end;
+    }
+  }
+  .header__nav__item {
+    a {
+      color: #fffffe;
+      font-size: 2rem;
+      
+      .underline-style {
+        height: 0.6rem;
+        margin-top: 1rem;
+        opacity: 0.5;
+        filter: alpha(opacity=50); /* For IE8 and earlier */
+        transition: all .2s ease-in-out;
+        width: 100%;
+      }
+
+      &:hover, &.is-selected {
+        .underline-style {
+          opacity: 1;
+          filter: alpha(opacity=100); /* For IE8 and earlier */
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}

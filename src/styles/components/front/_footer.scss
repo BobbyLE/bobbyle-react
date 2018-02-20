@@ -1,0 +1,30 @@
+.front {
+  .footer {
+    @include flex-grid-row;
+    @include flex-align($x: justify, $y: middle);
+    @include flex-direction(column);
+    @include breakpoint(medium) {
+      @include flex-direction(row);
+    }
+  }
+
+  .footer__copyright {
+    @include grid-column(12);
+    @include breakpoint(medium) {
+      @include grid-column(3);
+    }
+  }
+  .footer__links {
+    @include grid-column(12);
+    @include breakpoint(medium) {
+      @include grid-column(8);
+    }
+  }
+  .footer__links__list {
+    @include menu-base;
+    justify-content: center;
+    @include breakpoint(medium) {
+      justify-content: flex-end;
+    }
+  }
+}
