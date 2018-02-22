@@ -23,7 +23,7 @@ export default class AboutPage extends React.Component {
         <section className="presentation collapse">
           <aside className="presentation__photo">
             <PerspectiveCard intensity={7}>
-              <Link to="/contact" data-tooltip aria-haspopup="true" className="has-tip" data-disable-hover="false" tabIndex="1" title="Reach me!" data-position="top" data-alignment="center">
+              <Link to="/contact" data-tooltip aria-haspopup="true" className="has-tip" data-disable-hover="false" tabIndex="1" title="Reach me!" data-position="bottom" data-alignment="center">
                 <img src="/images/photo.jpg" alt="photo" />
               </Link>
             </PerspectiveCard>
