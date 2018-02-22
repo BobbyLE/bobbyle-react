@@ -24,7 +24,10 @@ module.exports = (env) => {
       rules: [{
         loader: 'babel-loader',
         test: /\.js$/,
-        exclude: /node_modules/
+        include: [
+          path.join(__dirname, 'src'),
+          path.join(__dirname, 'node_modules', 'foundation-sites')
+        ]
       }, {
         test: /\.s?css$/,
         use: CSSExtract.extract({
