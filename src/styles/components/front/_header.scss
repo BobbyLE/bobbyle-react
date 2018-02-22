@@ -29,8 +29,10 @@
   .header__nav__item {
     a {
       color: #fffffe;
-      font-size: 2rem;
-      
+      font-size: 2.2rem;
+      font-weight: bold;
+      line-height: 2rem;
+
       .underline-style {
         height: 0.6rem;
         margin-top: 1rem;
@@ -44,7 +46,7 @@
         .underline-style {
           opacity: 1;
           filter: alpha(opacity=100); /* For IE8 and earlier */
-          margin-top: 0.5rem;
+          margin-top: 0.6rem;
         }
       }
     }

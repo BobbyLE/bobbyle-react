@@ -4,8 +4,15 @@ $body-background: black;
 $grid-row-width: 120rem;
 // $global-margin: 5rem;
 $grid-column-gutter: (
-  small: 2rem,
-  medium: 3rem,
+  small: 4rem,
+  medium: 4rem,
+);
+$foundation-palette: (
+  primary: white,
+  secondary: #c8c8c8,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
 );
 
 

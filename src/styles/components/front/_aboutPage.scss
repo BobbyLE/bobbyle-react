@@ -1,3 +1,57 @@
 .front {
+  $about-color: #00a8ff;
+  .about {
+    a {
+      color: $about-color;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+    strong {
+      color: $about-color;
+    }
+  }
   
+  .presentation {
+    @include grid-column(12);
+    @include flex-grid-row;
+    @include flex-align($x: justify, $y: top);
+    @include flex-direction(row);
+    @include xy-grid-collapse;
+  }
+  .presentation__photo {
+    @include grid-column(12);
+    text-align: center;
+    
+    @include breakpoint(medium) {
+      @include grid-column(6);
+    }
+    padding: 0;
+  }
+  .presentation__text {
+    @include grid-column(12);
+    @include breakpoint(medium) {
+      @include grid-column(6);
+    }
+    padding: 0;
+  }
+  .presentation__text__title {
+    font-size: 2.6rem;
+    margin: 0;
+  }
+  .presentation__text__subtitle {
+    color: $secondary-color;
+    display: inline-block;
+    font-size: 2rem;
+    .underline-style {
+      background-image: linear-gradient(to right, rgb(0, 71, 146), rgb(0, 151, 215));
+      height: 0.4rem;
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+  .section-title {
+    color: $about-color;
+    font-size: 2rem;
+  }
 }

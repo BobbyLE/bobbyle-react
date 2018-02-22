@@ -11,10 +11,10 @@
   .footer__copyright {
     @include grid-column(12);
     @include breakpoint(medium) {
-      @include grid-column(6);
+      @include grid-column(4);
     }
     span {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-weight: bold;
     }
   }
@@ -22,14 +22,15 @@
   .footer__links {
     @include grid-column(12);
     @include breakpoint(medium) {
-      @include grid-column(6);
+      @include grid-column(8);
     }
   }
 
   .footer__links__list {
     @include flex;
     flex-wrap: wrap;
-    
+    justify-content: center;
+    padding: 0;
     @include breakpoint(medium) {
       justify-content: flex-end;
     }
