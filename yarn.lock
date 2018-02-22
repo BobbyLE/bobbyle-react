@@ -5123,7 +5123,7 @@ react-router@^4.1.1:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-shadow-wrapper@^1.0.6:
+react-shadow-wrapper@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-shadow-wrapper/-/react-shadow-wrapper-1.0.6.tgz#ddb00540992e8742c38be154bbee47e7f04d8f39"
   dependencies:
