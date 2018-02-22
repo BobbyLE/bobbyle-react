@@ -15,6 +15,20 @@ $foundation-palette: (
   alert: #cc4b37,
 );
 
+//Tooltip
+$has-tip-cursor: pointer;
+$has-tip-font-weight: bold;
+$has-tip-border-bottom: none;
+$tooltip-background-color: white;
+$tooltip-color: black;
+// $tooltip-padding: 0.75rem;
+$tooltip-max-width: 20rem;
+$tooltip-font-size: 1.8rem;
+// $tooltip-pip-width: 0.75rem;
+// $tooltip-pip-height: $tooltip-pip-width * 0.866;
+$tooltip-radius: 0.3rem;
+
+
 
 // //  Foundation for Sites Settings
 // //  -----------------------------

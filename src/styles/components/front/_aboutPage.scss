@@ -27,7 +27,22 @@
       @include grid-column(6);
     }
     padding: 0;
+
+    .perspective-card {
+      width: 325px;
+      height: 325px;
+      margin: auto;
+      a {
+        outline: 0;
+      }
+    }
   }
+  .tooltip {
+    // background: white;color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+  
   .presentation__text {
     @include grid-column(12);
     @include breakpoint(medium) {
