@@ -11,20 +11,75 @@
   .footer__copyright {
     @include grid-column(12);
     @include breakpoint(medium) {
-      @include grid-column(3);
+      @include grid-column(6);
+    }
+    span {
+      font-size: 1.4rem;
+      font-weight: bold;
     }
   }
+
   .footer__links {
     @include grid-column(12);
     @include breakpoint(medium) {
-      @include grid-column(8);
+      @include grid-column(6);
     }
   }
+
   .footer__links__list {
-    @include menu-base;
-    justify-content: center;
+    @include flex;
+    flex-wrap: wrap;
+    
     @include breakpoint(medium) {
       justify-content: flex-end;
     }
+  }
+
+  .footer__links__list__item {
+    @include flex;
+    justify-content: flex-end;
+    a {
+      line-height: 1;
+      text-decoration: none;
+      margin: 0.7rem 0.8rem;
+    }
+  }
+
+  .footer__links__social {
+    background: url('/images/sprite-social.png');
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    &:hover {
+      transform: rotate(0.1turn);
+    }
+  }
+
+  .footer__links__social--facebook {
+    
+  }
+
+  .footer__links__social--linkedin {
+    background-position-x: -32px;
+  }
+
+  .footer__links__social--github {
+    background-position-x: -64px;
+  }
+
+  .footer__links__social--instagram {
+    background-position-x: -96px;
+  }
+
+  .footer__links__social--500px {
+    background-position-x: -128px;
+  }
+
+  .footer__links__social--flickr {
+    background-position-x: -160px;
+  }
+  
+  .footer__links__social--twitter {
+    background-position-x: -192px;
   }
 }
