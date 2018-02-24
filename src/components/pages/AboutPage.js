@@ -1,18 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import Waypoint from 'react-waypoint';
 
 import GradientTitle from '../front/GradientTitle';
 import PerspectiveCard from '../front/PerspectiveCard';
 
 export default class AboutPage extends React.Component {
+  state = {
+    showExperience: false,
+    showSkills: false
+  }
   componentDidMount() {
     $(document).foundation();
+  }
+  experienceWayPoint = () => {
+    this.setState(() => ({showExperience: true}));
+  }
+  skillsWayPoint = () => {
+    this.setState(() => ({showSkills: true}));
   }
   render() {
     const beginColor = "#004792";
     const endColor = "#0097d7";
     return (
-      <div className="container main about">
+      <div className="container main about animated animatedFadeInUp fadeInUp">
         <section className="main__header column">
           <GradientTitle 
           beginColor={beginColor}
@@ -23,7 +34,7 @@ export default class AboutPage extends React.Component {
         <section className="presentation collapse">
           <aside className="presentation__photo">
             <PerspectiveCard intensity={7}>
-              <Link to="/contact" data-tooltip aria-haspopup="true" className="has-tip" data-disable-hover="false" tabIndex="1" title="Reach me!" data-position="bottom" data-alignment="center">
+              <Link to="/contact" data-tooltip aria-haspopup="true" className="has-tip has-child-img" data-disable-hover="false" tabIndex="1" title="Reach me!" data-position="bottom" data-alignment="center">
                 <img src="/images/photo.jpg" alt="photo" />
               </Link>
             </PerspectiveCard>
@@ -38,16 +49,99 @@ export default class AboutPage extends React.Component {
             <p>Everything started with passion to web technologies (HTML, Flash) at the age of 13 coding my first websites.
             In 2012, I graduated with a <strong>Degree in Web Development and Multimedia</strong> in Paris, France. 
             I now have 5 years experience working as a <strong>front-end developer</strong> in several web agencies.
-            <br />Right now, I am specialising in Javascript frameworks like <strong>ReactJS</strong>.</p>
-            <p>This website has been coded using ReactJS, Foundation, Yarn, Webpack, Babel & Redux. </p>
+            <br />Right now, I am specialising in Javascript frameworks like <strong>React</strong>.</p>
+            <p>This website has been coded using ReactJS, Foundation, Yarn, Webpack, Babel, Redux and Express. </p>
             <p>When I'm not coding, you'll find me taking <Link to="#">photos</Link> or playing Volley-Ball & Guitar.</p>
           </section>
         </section>
-        <section className="experiences column small-12 medium-6">
+        <section className={"experiences animatedFadeInUp animated" + (this.state.showExperience && ' fadeInUp')}>
+          <Waypoint onEnter={this.experienceWayPoint} />
           <h3 className="section-title">Experiences</h3>
+          <dl>
+            <dt>YouConnect<br/>
+              <span>Front-end Developer</span>
+            </dt>
+            <dd>2016-2017</dd>
+          </dl>
+          <dl>
+            <dt>Ylly<br/>
+              <span>Front-end Developer</span>
+            </dt>
+            <dd>2015-2016</dd>
+          </dl>
+          <dl>
+            <dt>H2C Interactive<br/>
+              <span>Front-end Developer</span>
+            </dt>
+            <dd>2013-2015</dd>
+          </dl>
+          <dl>
+            <dt>Gris-Metal<br/>
+              <span>Front-end Developer</span>
+            </dt>
+            <dd>2011-2012</dd>
+          </dl>
+          <dl>
+            <dt>Charenton Communication<br/>
+              <span>Web/Flash Developer (internship)</span>
+            </dt>
+            <dd>2010 & 2011</dd>
+          </dl>
         </section>
-        <section className="skills column small-12 medium-6">
+        <section className={"skills animatedFadeInUp animated" + (this.state.showSkills && ' fadeInUp')}>
+          <Waypoint onEnter={this.skillsWayPoint} />
           <h3 className="section-title">Skills</h3>
+          <dl>
+            <dt>Front-end</dt>
+            <dd>React</dd>
+            <dd>Javascript (ES6)</dd>
+            <dd>HTML5</dd>
+            <dd>CSS3/SCSS</dd>
+            <dd>jQuery</dd>
+            <dd>Bootstrap</dd>
+            <dd>Foundation</dd>
+          </dl>
+          <dl>
+            <dt>Back-end</dt>
+            <dd>PHP</dd>
+            <dd>Ruby On Rails</dd>
+          </dl>
+          <dl>
+            <dt>Tools</dt>
+            <dd>Npm</dd>
+            <dd>Yarn</dd>
+            <dd>Webpack</dd>
+            <dd>Express</dd>
+          </dl>
+          <dl>
+            <dt>CMS</dt>
+            <dd>WordPress</dd>
+            <dd>Magento</dd>
+            <dd>Prestashop</dd>
+          </dl>
+          <dl>
+            <dt>Test</dt>
+            <dd>Jest</dd>
+            <dd>Enzyme</dd>
+          </dl>
+          <dl>
+            <dt>DBMS</dt>
+            <dd>MySQL</dd>
+            <dd>Firebase</dd>
+          </dl>
+          <dl>
+            <dt>Versioning/ Deployment</dt>
+            <dd>Git</dd>
+            <dd>Heroku</dd>
+            <dd>AWS</dd>
+          </dl>
+          <dl>
+            <dt>Software</dt>
+            <dd>Photoshop</dd>
+            <dd>Sublime Text</dd>
+            <dd>Microsoft Visual Studio</dd>
+            <dd>Lightroom</dd>
+          </dl>
         </section>
       </div>   
     )

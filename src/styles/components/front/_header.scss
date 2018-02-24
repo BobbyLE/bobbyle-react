@@ -1,14 +1,23 @@
 .front {
   .header {
     @include flex-grid-row;
-    @include flex-align($x: justify, $y: middle);
+    @include flex-align($x: justify, $y: top);
     @include flex-direction(column);
+
+    margin-top: 5rem;
+
     @include breakpoint(medium) {
       @include flex-direction(row);
     }
   }
   .header__logo {
     @include grid-column(12);
+
+    h1 {
+      margin-top: 0;
+      font-size: 2.6rem;
+      line-height: 3.6rem;
+    }
     @include breakpoint(medium) {
       @include grid-column(3);
     }
@@ -16,7 +25,7 @@
   .header__navbar {
     @include grid-column(12);
     @include breakpoint(medium) {
-      @include grid-column(8);
+      @include grid-column(9);
     }
   }
   .header__nav {

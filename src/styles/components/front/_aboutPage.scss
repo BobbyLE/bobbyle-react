@@ -1,12 +1,6 @@
 .front {
   $about-color: #00a8ff;
   .about {
-    a {
-      color: $about-color;
-      &:hover {
-        color: $primary-color;
-      }
-    }
     strong {
       color: $about-color;
     }
@@ -29,8 +23,8 @@
     padding: 0;
 
     .perspective-card {
-      width: 325px;
-      height: 325px;
+      max-width: 325px;
+      max-height: 325px;
       margin: auto;
       a {
         outline: 0;
@@ -38,7 +32,6 @@
     }
   }
   .tooltip {
-    // background: white;color: black;
     font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
   }
@@ -68,5 +61,50 @@
   .section-title {
     color: $about-color;
     font-size: 2rem;
+  }
+
+  .presentation, .experiences, .skills {
+    @include margin-bottom;
+  }
+  .experiences {
+    @include grid-column(12);
+    dl {
+      @include flex;
+      @include flex-align($x: justify, $y: top);
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    dt {
+      span {
+        font-weight: normal;
+      }
+    }
+
+    @include breakpoint(medium) {
+      @include grid-column(6);
+    }
+  }
+  .skills {
+    @include grid-column(12);
+    dl {
+      margin: 1rem 0;
+      font-size: 1.8rem;
+    }
+    dt{
+      font-weight: bold;
+      line-height: 1;
+    }
+    dd {
+      display: inline;
+      margin-left: 0;
+      line-height: 1;
+      &:not(:last-child):after {
+        content: ', ';
+      }
+    }
+
+    @include breakpoint(medium) {
+      @include grid-column(6);
+    }
   }
 }

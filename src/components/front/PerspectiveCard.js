@@ -30,6 +30,8 @@ export default class PerspectiveCard extends React.Component {
   handleMouseOut = (event) => {
     const eventTarget = event.target;
     eventTarget.style.transform = 'rotateY(0) rotateX(0)';
+    this.rotateY = 0;
+    this.rotateX = 0;
   }
   render() {
     const {intensity, children} = this.props;
