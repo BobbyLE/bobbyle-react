@@ -8,7 +8,8 @@ import PerspectiveCard from '../front/PerspectiveCard';
 export default class AboutPage extends React.Component {
   state = {
     showExperience: false,
-    showSkills: false
+    showSkills: false,
+    showResume: false
   }
   componentDidMount() {
     $(document).foundation();
@@ -18,6 +19,9 @@ export default class AboutPage extends React.Component {
   }
   skillsWayPoint = () => {
     this.setState(() => ({showSkills: true}));
+  }
+  resumeWayPoint = () => {
+    this.setState(() => ({showResume: true}));
   }
   render() {
     const beginColor = "#004792";
@@ -46,11 +50,11 @@ export default class AboutPage extends React.Component {
               <div className="underline-style"></div>
             </span>
             <h3 className="section-title">Presentation</h3>
-            <p>Everything started with passion to web technologies (HTML, Flash) at the age of 13 coding my first websites.
+            <p>Everything started with passion to web technologies (HTML, Flash AS3) at the age of 13 coding my first websites.
             In 2012, I graduated with a <strong>Degree in Web Development and Multimedia</strong> in Paris, France. 
             I now have 5 years experience working as a <strong>front-end developer</strong> in several web agencies.
             <br />Right now, I am specialising in Javascript frameworks like <strong>React</strong>.</p>
-            <p>This website has been coded using ReactJS, Foundation, Yarn, Webpack, Babel, Redux and Express. </p>
+            <p>This website has been coded using React, Redux, Foundation, Yarn, Webpack, Babel and Express.</p>
             <p>When I'm not coding, you'll find me taking <Link to="#">photos</Link> or playing Volley-Ball & Guitar.</p>
           </section>
         </section>
@@ -111,6 +115,7 @@ export default class AboutPage extends React.Component {
             <dd>Npm</dd>
             <dd>Yarn</dd>
             <dd>Webpack</dd>
+            <dd>Babel</dd>
             <dd>Express</dd>
           </dl>
           <dl>
@@ -142,6 +147,15 @@ export default class AboutPage extends React.Component {
             <dd>Microsoft Visual Studio</dd>
             <dd>Lightroom</dd>
           </dl>
+        </section>
+        <section className={"resume animatedFadeInUp animated" + (this.state.showResume && ' fadeInUp')}>
+          <Waypoint onEnter={this.resumeWayPoint} />
+          <div className="resume__link">
+            <a href="/Bobby_Le_Resume.pdf" target="_blank">
+              DOWNLOAD MY RESUME
+              <div className="underline-style"></div>
+            </a>
+          </div>
         </section>
       </div>   
     )

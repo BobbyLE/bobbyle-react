@@ -26,7 +26,7 @@ const AppRouter = () => (
       <Redirect from="/" to="/about" component={AboutPage} exact={true} />
       <FrontRoute path="/about" component={AboutPage} exact={true} />
       <FrontRoute path="/work" component={WorkPage} exact={true} />
-      <FrontRoute path="/blog" component={BlogPage} />
+      {/*<FrontRoute path="/blog" component={BlogPage} />*/}
       <PublicRoute path="/admin" component={LoginPage} exact={true} />
         <PrivateRoute path="/admin/dashboard" component={DashboardPage} />
         <PrivateRoute path="/admin/categories" component={CategoriesPage} exact={true} />

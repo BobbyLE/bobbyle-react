@@ -58,6 +58,7 @@ const Header = () => {
               Photo
             </GradientNavLink>
           </li>
+          {/*
           <li className="header__nav__item">
             <GradientNavLink 
               to="/blog" 
@@ -67,6 +68,7 @@ const Header = () => {
               Blog
             </GradientNavLink>
           </li>
+          */}
           <li className="header__nav__item">
             <GradientNavLink 
               to="#" 

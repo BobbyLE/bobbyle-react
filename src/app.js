@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import 'foundation-sites';
+import Foundation from 'foundation-sites';
 
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
