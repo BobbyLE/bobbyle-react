@@ -4,13 +4,21 @@
  a {
   transition: all .2s ease-in-out;
  }
+
+ p {
+  font-size: $body-font-size;
+}
+
  .underline-style {
   transition: all .2s ease-in-out;
  }
   .container {
-    @include flex-grid-row;
+    @include flex-grid-row($behavior: 'collapse');
     @include flex-align($x: justify, $y: top);
     @include flex-direction(row);
+    &.small {
+      max-width: 70rem;
+    }
   }
   .main {
     a {
@@ -30,6 +38,7 @@
   }
 
   .main__header {
+    @include grid-column(12);
     @include margin-vertical;
   }
   .main__title {
@@ -42,9 +51,5 @@
       width: 100%;
       margin-top: 0.4rem;
     }
-  }
-  
-  p {
-    font-size: 1.8rem;
   }
 }

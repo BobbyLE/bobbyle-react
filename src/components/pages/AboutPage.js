@@ -28,14 +28,14 @@ export default class AboutPage extends React.Component {
     const endColor = "#0097d7";
     return (
       <div className="container main about animated animatedFadeInUp fadeInUp">
-        <section className="main__header column">
+        <section className="main__header">
           <GradientTitle 
           beginColor={beginColor}
           endColor={endColor}>
             About
           </GradientTitle>
         </section>
-        <section className="presentation collapse">
+        <section className="presentation">
           <aside className="presentation__photo">
             <PerspectiveCard intensity={7}>
               <Link to="/contact" data-tooltip aria-haspopup="true" className="has-tip has-child-img" data-disable-hover="false" tabIndex="1" title="Reach me!" data-position="bottom" data-alignment="center">
@@ -135,7 +135,7 @@ export default class AboutPage extends React.Component {
             <dd>Firebase</dd>
           </dl>
           <dl>
-            <dt>Versioning/ Deployment</dt>
+            <dt>Versioning/Deployment</dt>
             <dd>Git</dd>
             <dd>Heroku</dd>
             <dd>AWS</dd>
@@ -144,7 +144,7 @@ export default class AboutPage extends React.Component {
             <dt>Software</dt>
             <dd>Photoshop</dd>
             <dd>Sublime Text</dd>
-            <dd>Microsoft Visual Studio</dd>
+            <dd>Visual Studio Code</dd>
             <dd>Lightroom</dd>
           </dl>
         </section>

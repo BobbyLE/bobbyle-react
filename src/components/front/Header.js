@@ -71,7 +71,7 @@ const Header = () => {
           */}
           <li className="header__nav__item">
             <GradientNavLink 
-              to="#" 
+              to="/contact" 
               activeClassName="is-selected"
               beginColor={contactColor.beginColor}
               endColor={contactColor.endColor}>

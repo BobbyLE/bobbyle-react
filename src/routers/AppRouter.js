@@ -12,6 +12,7 @@ import EditArticlePage from '../components/admin/blog/articles/EditArticlePage';
 import AboutPage from '../components/pages/AboutPage';
 import WorkPage from '../components/pages/WorkPage';
 import BlogPage from '../components/pages/BlogPage';
+import ContactPage from '../components/pages/ContactPage';
 import NotFoundPage from '../components/pages/NotFoundPage';
 import LoginPage from '../components/admin/LoginPage';
 import PrivateRoute from './PrivateRoute';
@@ -27,6 +28,7 @@ const AppRouter = () => (
       <FrontRoute path="/about" component={AboutPage} exact={true} />
       <FrontRoute path="/work" component={WorkPage} exact={true} />
       {/*<FrontRoute path="/blog" component={BlogPage} />*/}
+      <FrontRoute path="/contact" component={ContactPage} exact={true} />
       <PublicRoute path="/admin" component={LoginPage} exact={true} />
         <PrivateRoute path="/admin/dashboard" component={DashboardPage} />
         <PrivateRoute path="/admin/categories" component={CategoriesPage} exact={true} />

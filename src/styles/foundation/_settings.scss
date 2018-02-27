@@ -5,9 +5,7 @@ $margin-vertical: 5rem;
 $grid-row-width: 120rem;
 // $global-margin: 5rem;
 $grid-column-gutter: (
-  small: 4rem,
-  medium: 4rem,
-  large: 8rem
+  small: 4rem
 );
 $foundation-palette: (
   primary: white,
@@ -16,6 +14,9 @@ $foundation-palette: (
   warning: #ffae00,
   alert: #cc4b37,
 );
+
+//font size
+$body-font-size: 2rem;
 
 //Breakpoint
 $breakpoints: (
@@ -36,7 +37,7 @@ $tooltip-background-color: white;
 $tooltip-color: black;
 // $tooltip-padding: 0.75rem;
 $tooltip-max-width: 20rem;
-$tooltip-font-size: 1.8rem;
+$tooltip-font-size: $body-font-size;
 // $tooltip-pip-width: 0.75rem;
 // $tooltip-pip-height: $tooltip-pip-width * 0.866;
 $tooltip-radius: 0.3rem;

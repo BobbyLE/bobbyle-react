@@ -71,7 +71,7 @@
     dl {
       @include flex;
       @include flex-align($x: justify, $y: top);
-      font-size: 1.8rem;
+      font-size: $body-font-size;
       font-weight: bold;
     }
     dt {
@@ -88,7 +88,7 @@
     @include grid-column(12);
     dl {
       margin: 1rem 0;
-      font-size: 1.8rem;
+      font-size: $body-font-size;
     }
     dt{
       font-weight: bold;
@@ -116,7 +116,7 @@
   }
   .resume__link {
     text-align: center;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     
     a {
       display: block;
