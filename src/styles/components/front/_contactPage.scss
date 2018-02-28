@@ -36,6 +36,9 @@
     label {
       font-size: $body-font-size;
       font-weight: bold;
+
+      @include flex;
+      @include flex-align($x: justify);
       
     }
     input {
@@ -50,6 +53,10 @@
       &:focus {
         background-color: hsla(0,0%,100%,.21);
         outline: 0px solid white;
+      }
+      &:disabled {
+        color: rgba(255, 255, 255, 0.1);
+        cursor: not-allowed;
       }
     }
     textarea {
@@ -67,6 +74,10 @@
         background-color: hsla(0,0%,100%,.21);
         outline: 0px solid white;
       }
+      &:disabled {
+        color: rgba(255, 255, 255, 0.1);
+        cursor: not-allowed;
+      }
     }
     .gradient-button {
       color: white;
@@ -81,7 +92,6 @@
         filter: alpha(opacity=60); /* For IE8 and earlier */
         width: 100%;
       }
-
       &:hover {
         .underline-style {
           margin-top: 0.4rem;
@@ -92,6 +102,25 @@
       &:focus {
         outline: 0;
       }
+      &:disabled {
+        color: rgba(255, 255, 255, 0.8);
+        cursor: not-allowed;
+        &:hover {
+          .underline-style {
+            margin-top: 1rem;
+            opacity: 0.6;
+            filter: alpha(opacity=60); /* For IE8 and earlier */
+          }
+        }
+      }
+    }
+    .success-message {
+      color: $success-color;
+      font-weight: bold;
+      text-align: center;
+    }
+    .warning-message {
+      color: $warning-color;
     }
   }
 }
