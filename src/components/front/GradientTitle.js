@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const GradientTitle = (props) => {
-  const { children, beginColor, endColor, ...rest } = props;
+  const { children, beginColor, endColor, className, ...rest } = props;
   return (
-    <h1 className="main__title">
+    <h1 className={"main__title "+className}>
       {children}
       <div 
         className="underline-style" 

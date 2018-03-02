@@ -1,0 +1,23 @@
+.front {
+  .more-clients {
+    @include grid-column(12);
+    @include margin-vertical;
+  }
+  .clients-grid {
+    @include flex-grid-row;
+  }
+  .clients-column {
+    @include grid-column(12);
+    @include breakpoint(medium) {
+      @include grid-column(6);
+    }
+    @include breakpoint(large) {
+      @include grid-column(4);
+    }
+    text-align: center;
+    margin: 1rem 0px;
+    img {
+      width: 80%;
+    }
+  }
+}

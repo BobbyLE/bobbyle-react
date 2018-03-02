@@ -24,8 +24,8 @@ export default class AboutPage extends React.Component {
     this.setState(() => ({showResume: true}));
   }
   render() {
-    const beginColor = "#004792";
-    const endColor = "#0097d7";
+    const beginColor = "#004792",
+          endColor = "#0097d7";
     return (
       <div className="container main about animated animatedFadeInUp fadeInUp">
         <section className="main__header">
