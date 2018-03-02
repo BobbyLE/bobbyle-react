@@ -7,7 +7,6 @@ import WorkForm from './WorkForm';
 
 class AddWorkPage extends React.Component {
   handleAddWork = (work) => {
-    console.log(work);
     this.props.startAddWork(work);
     this.props.history.push('/admin/works');
   }

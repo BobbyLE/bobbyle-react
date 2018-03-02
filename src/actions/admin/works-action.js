@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import database, {storage} from '../../firebase/firebase';
+import database, { storage } from '../../firebase/firebase';
 
 //ADD_CATEGORIES
 export const addWork = (work) => ({
@@ -32,9 +32,12 @@ export const removeWork = ({ id } = {}) => ({
   type: 'REMOVE_WORK',
   id
 });
-export const startRemoveWork = ({id} = {}) => {
+export const startRemoveWork = ({id, img} = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
+    storage.ref(`works/${img}`).delete().catch((error) => {
+      console.log(error);
+    });
     return database.ref(`users/${uid}/works/${id}`).remove().then(()=> {
       dispatch(removeWork({ id }));
     });
