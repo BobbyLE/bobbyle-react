@@ -53,7 +53,6 @@ export class ArticleForm extends React.Component {
   componentDidMount() {
     //List only self categories
     if(this.props.getCategories.length === 0) {
-      console.log('No category choosen');
       //List all categories
       if(this.props.categories.length>0) {
         this.setState(() => ({ categoryId: this.props.categories[0].id}));

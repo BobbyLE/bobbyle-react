@@ -7,6 +7,7 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetCategories } from './actions/admin/categories-action';
 import { startSetArticles } from './actions/admin/articles-action';
+import { startSetWorks } from './actions/admin/works-action';
 import { login, logout } from './actions/admin/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -36,7 +37,8 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user));
     store.dispatch(startSetArticles());
-    store.dispatch(startSetCategories()).then( () => {
+    store.dispatch(startSetCategories());
+    store.dispatch(startSetWorks()).then( () => {
       renderApp();
       if (history.location.pathname === '/admin') {
         history.push('/admin/dashboard');
