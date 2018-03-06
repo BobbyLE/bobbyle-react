@@ -37,7 +37,7 @@ export default class ContactForm extends React.Component {
     let errorMessage = this.state.errors.message;
 
     if(this.state.cName === '') {
-      errorName = '* Do not leave blank'
+      errorName = '* Must not be empty'
       isNameValid = false;
     }
     else {
@@ -47,7 +47,7 @@ export default class ContactForm extends React.Component {
     }
 
     if(this.state.cEmail === '' || !this.state.cEmail.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-      errorEmail = '* Email is not valid'
+      errorEmail = '* Must be a valid Email'
       isEmailValid = false;
     }
     else {
@@ -56,7 +56,7 @@ export default class ContactForm extends React.Component {
     }
 
     if(this.state.cMessage === '') {
-      errorMessage = '* Do not leave blank'
+      errorMessage = '* Must not be empty'
       isMessageValid = false;
     }
     else {
@@ -167,18 +167,5 @@ export default class ContactForm extends React.Component {
         </div>
       </form>
     )
-    // return (
-    //   <form action="/send-email" method="post">
-    //     <label htmlFor="to">To:</label>
-    //     <input type="email" name="to" />
-
-    //     <label htmlFor="subject">Subject:</label>
-    //     <input type="text" name="subject" />
-
-    //     <label htmlFor="body">Body:</label>
-    //     <textarea cols="5" rows="5" name="body"></textarea>
-    //     <button type="submit">Send</button>
-    //   </form>
-    // )
   }
 }
