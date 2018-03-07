@@ -2,7 +2,7 @@ import React from 'react';
 import Waypoint from 'react-waypoint';
 
 import GradientTitle from '../front/GradientTitle';
-
+import WorkList from '../front/WorkList';
 export default class WorkPage extends React.Component {
   state = {
     showClients: false,
@@ -47,9 +47,10 @@ export default class WorkPage extends React.Component {
           <GradientTitle 
             beginColor={this.beginColor}
             endColor={this.endColor}>
-            About
+            Work
           </GradientTitle>
         </section>
+        <WorkList />
         <section className={"more-clients animatedFadeInUp animated" + (this.state.showClients && ' fadeInUp')}>
           <Waypoint onEnter={this.clientsWayPoint} />
           <GradientTitle 

@@ -69,7 +69,7 @@ export const setWorks = (works) => ({
 
 export const startSetWorks = () => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
+    const uid = getState().auth.uid ? getState().auth.uid : process.env.USER_ID;
     return database.ref(`users/${uid}/works`).once('value').then( (snapshot) => {
       const works = [];
       snapshot.forEach( (childSnapshot) => {

@@ -63,7 +63,7 @@ export const setCategories = (categories) => ({
 
 export const startSetCategories = () => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
+    const uid = getState().auth.uid ? getState().auth.uid : process.env.USER_ID;
     return database.ref(`users/${uid}/categories`).once('value').then( (snapshot) => {
       const categories = [];
       snapshot.forEach( (childSnapshot) => {

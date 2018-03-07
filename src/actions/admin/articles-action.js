@@ -132,18 +132,7 @@ export const setArticles = (articles) => ({
 
 export const startSetArticles = () => {
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    // If we need to listen 
-    // return database.ref(`users/${uid}/articles`).on('value', (snapshot) => {
-    //   const articles = [];
-    //   snapshot.forEach( (childSnapshot) => {
-    //     articles.push({
-    //       id: childSnapshot.key,
-    //       ...childSnapshot.val() 
-    //     });
-    //   });
-    //   dispatch(setArticles(articles));
-    // })
+    const uid = getState().auth.uid ? getState().auth.uid : process.env.USER_ID;
     return database.ref(`users/${uid}/articles`).once('value').then( (snapshot) => {
       const articles = [];
       snapshot.forEach( (childSnapshot) => {

@@ -33,7 +33,7 @@ const AppRouter = () => (
       <Redirect from="/" to="/about" component={AboutPage} exact={true} />
       <FrontRoute path="/about" component={AboutPage} exact={true} />
       <FrontRoute path="/work" component={WorkPage} exact={true} />
-      {/*<FrontRoute path="/blog" component={BlogPage} />*/}
+      <FrontRoute path="/blog" component={BlogPage} />
       <FrontRoute path="/contact" component={ContactPage} exact={true} />
 
       <PublicRoute path="/admin" component={LoginPage} exact={true} />
