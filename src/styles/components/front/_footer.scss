@@ -53,13 +53,17 @@
     display: inline-block;
     height: 30px;
     width: 30px;
+
+    img {
+      transition: all .2s ease-in-out;
+      opacity: 0;
+    }
     &:hover {
       transform: rotate(0.1turn);
+      img {
+        opacity: 1;
+      }
     }
-  }
-
-  .footer__links__social--facebook {
-    
   }
 
   .footer__links__social--linkedin {
