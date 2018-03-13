@@ -125,7 +125,7 @@ export default class AboutPage extends React.Component {
             <dd>Prestashop</dd>
           </dl>
           <dl>
-            <dt>Test</dt>
+            <dt>Testing</dt>
             <dd>Jest</dd>
             <dd>Enzyme</dd>
           </dl>

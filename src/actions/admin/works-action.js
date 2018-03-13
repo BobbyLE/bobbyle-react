@@ -14,10 +14,11 @@ export const startAddWork = (workData = {}) => {
       title = '',
       tags = '',
       img = '',
-      imgURL = ''
+      imgURL = '',
+      url = ''
     } = workData;
-    const work = { title, tags, img, imgURL };
-
+    const work = { title, tags, img, imgURL, url };
+    
     return database.ref(`users/${uid}/works`).push(work).then((ref) => {
       dispatch(addWork({
         id: ref.key,

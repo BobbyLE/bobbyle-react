@@ -31,10 +31,10 @@ export default class WorkListItem extends React.Component {
     window.removeEventListener("resize", this.updateDimensions);
   }
   render() {
-    const {title, tags, imgURL} = this.props;
+    const {title, tags, imgURL, url} = this.props;
     return (
       <div className="column work-column">
-        <a ref="linkWork" href="#" style={
+        <a ref="linkWork" href={url} target="_blank" style={
           {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${imgURL})`,
             backgroundPosition: 'center center',

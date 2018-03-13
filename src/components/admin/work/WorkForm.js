@@ -9,7 +9,8 @@ export default class WorkForm extends React.Component {
     img: this.props.work ? this.props.work.img : '',
     isUploading: false,
     progress: 0,
-    imgURL: this.props.work ? this.props.work.imgURL : ''
+    imgURL: this.props.work ? this.props.work.imgURL : '',
+    url: this.props.work ? this.props.work.url : ''
   };
 
   handleUploadStart = () => this.setState({isUploading: true, progress: 0});
@@ -30,6 +31,10 @@ export default class WorkForm extends React.Component {
     const tags = event.target.value;
     this.setState(() => ({tags}));
   }
+  onUrlChange = (event) => {
+    const url = event.target.value;
+    this.setState(() => ({url}));
+  }
   handleForm = (event) => {
     event.preventDefault();
     if(!this.state.title) {
@@ -43,11 +48,15 @@ export default class WorkForm extends React.Component {
         title: this.state.title,
         tags: this.state.tags,
         img: this.state.img,
-        imgURL: this.state.imgURL
+        imgURL: this.state.imgURL,
+        url: this.state.url
       });
       this.setState( () => ({
         title: '',
-        tags: ''
+        tags: '',
+        img: '',
+        imgURL: '',
+        url: ''
       }));
     }
   }
@@ -57,19 +66,23 @@ export default class WorkForm extends React.Component {
         {this.state.error && <p className="add-option-error">{this.state.error}</p>}
         <form className="form" onSubmit={this.handleForm}>
           <input 
-          className="text-input" 
-          name="title" 
-          placeholder="Title" 
-          value={this.state.title}
-          onChange={this.onTitleChange}
-          />
+            className="text-input" 
+            name="title" 
+            placeholder="Title" 
+            value={this.state.title}
+            onChange={this.onTitleChange}/>
           <input 
-          className="text-input" 
-          name="tags" 
-          placeholder="Tags" 
-          value={this.state.tags}
-          onChange={this.onTagsChange}
-          />
+            className="text-input" 
+            name="tags" 
+            placeholder="Tags" 
+            value={this.state.tags}
+            onChange={this.onTagsChange}/>
+          <input
+            className="text-input" 
+            name="url" 
+            placeholder="Site URL" 
+            value={this.state.url}
+            onChange={this.onUrlChange}/>
 
           <label>Image:</label>
           {this.state.isUploading &&
