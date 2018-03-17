@@ -12,11 +12,13 @@
       background-position: center center;
       background-repeat: no-repeat;
       background-size: 100%;
+      color: $primary-color;
       border: none;
       display: flex;  
       opacity: 1;
       padding: 1rem;
       text-align: center;
+      text-decoration: none;
       transition: all .4s ease-in-out;
       width: 100%;
       &:hover {
