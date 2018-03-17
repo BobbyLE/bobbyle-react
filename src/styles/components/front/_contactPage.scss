@@ -8,6 +8,57 @@
   .contact__hello__title {
     font-size: $body-font-size;
   }
+
+  .contact__social {
+    @include grid-column(12);
+  }
+  .contact__social__list {
+    @include flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+  }
+  .contact__social__list__item {
+    @include flex;
+  }
+  .contact__social__list__item__link {
+    background: url('/images/socials/contact/sprite-social-contact.png');
+    display: inline-block;
+    line-height: 1;
+    margin: 0.7rem 0.8rem;
+    height: 70px;
+    text-decoration: none;
+    width: 70px;
+    img {
+      transition: all .2s ease-in-out;
+      opacity: 0;
+    }
+    &:hover {
+      transform: rotate(0.1turn);
+      img {
+        opacity: 1;
+      }
+    }
+  }
+
+  .contact__social__list__item__link--linkedin {
+    background-position-x: -72px;
+  }
+  .contact__social__list__item__link--github {
+    background-position-x: -142px;
+  }
+  .contact__social__list__item__link--instagram {
+    background-position-x: -214px;
+  }
+  .contact__social__list__item__link--px {
+    background-position-x: -286px;
+  }
+  .contact__social__list__item__link--flickr {
+    background-position-x: -358px;
+  }
+  .contact__social__list__item__link--twitter {
+    background-position-x: -430px;
+  }
   .contact__form {
     @include grid-column(12);
     

@@ -41,17 +41,15 @@
   .footer__links__list__item {
     @include flex;
     justify-content: flex-end;
-    a {
-      line-height: 1;
-      text-decoration: none;
-      margin: 0.7rem 0.8rem;
-    }
   }
 
   .footer__links__social {
-    background: url('/images/sprite-social.png');
+    background: url('/images/socials/sprite-social.png');
     display: inline-block;
+    line-height: 1;
+    margin: 0.7rem 0.8rem;
     height: 30px;
+    text-decoration: none;
     width: 30px;
 
     img {

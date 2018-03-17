@@ -37,8 +37,6 @@ export default class WorkListItem extends React.Component {
         <a ref="linkWork" href={url} target="_blank" style={
           {
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${imgURL})`,
-            backgroundPosition: 'center center',
-            backgroundSize: 'cover',
             height: this.state.workItemHeight
           }
         }>

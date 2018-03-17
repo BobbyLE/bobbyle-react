@@ -21,18 +21,20 @@
     }
   }
   .main {
-    a {
-      color: $primary-color;
-      text-decoration: none;
-      border-bottom: 2px solid rgba(255,255,255,0.4);
-  
-      &:hover {
-        border-bottom: 2px solid hsla(0,0%,100%,1)
-      }
-      //if link has child img => no border
-      &.has-child-img{
-        border: 0;
-        outline: 0;
+    p {
+      a {
+        color: $primary-color;
+        text-decoration: none;
+        border-bottom: 2px solid rgba(255,255,255,0.4);
+    
+        &:hover {
+          border-bottom: 2px solid hsla(0,0%,100%,1)
+        }
+        //if link has child img => no border
+        &.has-child-img{
+          border: 0;
+          outline: 0;
+        }
       }
     }
   }
