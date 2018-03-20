@@ -8,7 +8,7 @@ export class WorkList extends React.Component {
     const { works } = this.props;
     return (
       <section className="work-list">
-          <div className="row work-row small-up-2 medium-up-3 large-up-4">
+          <div className="row work-row small-up-1 medium-up-3 large-up-4">
           {
             works.length === 0 ? '' : (
               works.map((work) => {

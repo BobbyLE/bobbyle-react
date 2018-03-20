@@ -36,11 +36,12 @@ export default class WorkListItem extends React.Component {
       <div className="column work-column">
         <a ref="linkWork" href={url} target="_blank" style={
           {
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${imgURL})`,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${imgURL}')`,
             height: this.state.workItemHeight
           }
         }>
-          <div>
+          <meta itemProp="image" content={imgURL}></meta>
+          <div className="work-column__description">
             <h2>{title}</h2>
             <h3>{tags}</h3>
           </div>

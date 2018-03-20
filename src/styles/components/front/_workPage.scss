@@ -19,21 +19,25 @@
       padding: 1rem;
       text-align: center;
       text-decoration: none;
-      transition: all .4s ease-in-out;
+      transition: all .2s ease-in-out;
       width: 100%;
       &:hover {
-        background-size: 110%;
+        background-size: 115%;
         border: none;
-        opacity: 0.7;
+        opacity: 0.8;
+        .visit {
+          opacity: 0;
+          transition: all .2s ease-in-out;
+        }
       }
-      div {
+      .work-column__description {
         align-self: center;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        transition: all .2s ease-in-out;
         h2 {
           font-size: 2.2rem;
+          line-height: 1;
           text-transform: uppercase;
           margin: 0.5rem 0;
         }
@@ -43,6 +47,10 @@
           line-height: 1.2;
           margin: 0;
         }
+      }
+      .visit {
+        opacity: 1;
+        
       }
     }
   }

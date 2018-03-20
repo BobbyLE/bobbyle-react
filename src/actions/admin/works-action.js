@@ -79,6 +79,7 @@ export const startSetWorks = () => {
           ...childSnapshot.val() 
         });
       });
+      works.reverse();
       dispatch(setWorks(works));
     });
   }
