@@ -30,3 +30,9 @@ I created this app to learn full React Redux full based application with Firebas
 
 ## Licence
 The project is available as open source under the terms of the MIT Licence.
+
+## Heroku
+http://bobbyle.herokuapp.com
+
+## Author
+by [Bobby LE](http://www.bobbyle.net)
