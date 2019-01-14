@@ -9,7 +9,7 @@ This is my *Web* & *Photography* **Portfolio** and **Blog**.
 - Webpack
 - Yarn
 - Babel
-- Sass
+- Scss
 - Jest
 - Enzyme
 - Firebase
