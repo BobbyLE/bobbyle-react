@@ -1,5 +1,5 @@
 import React from 'react';
-import Waypoint from 'react-waypoint';
+import { Waypoint } from 'react-waypoint';
 
 import GradientTitle from '../front/GradientTitle';
 import ContactForm from '../front/ContactForm';

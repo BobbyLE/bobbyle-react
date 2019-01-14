@@ -1,5 +1,5 @@
 import React from 'react';
-import Waypoint from 'react-waypoint';
+import { Waypoint } from 'react-waypoint';
 
 export default class Footer extends React.Component {
   state = {
@@ -19,7 +19,7 @@ export default class Footer extends React.Component {
       twitter: "https://twitter.com/BobbyWeissLE"
     }
     return (
-      <footer className={"footer animatedFadeInUp animated" + (this.state.showFooter && ' fadeInUp')}>
+      <footer className={`footer animatedFadeInUp animated ${this.state.showFooter ? 'fadeInUp': ''}`}>
         <Waypoint onEnter={this.footerWayPoint} />
         <section className="footer__copyright">
           <span>Copyright © 2018 Bobby Le.</span>

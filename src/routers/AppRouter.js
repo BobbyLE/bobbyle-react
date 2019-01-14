@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history'
 import ShadowWrapper from 'react-shadow-wrapper';
 
 //Admin
@@ -25,7 +25,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import FrontRoute from './FrontRoute';
 
-export const history = createHistory();
+export const history = createBrowserHistory();
 
 const AppRouter = () => (
   <Router history={history}>

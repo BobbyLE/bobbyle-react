@@ -1,5 +1,5 @@
 import React from 'react';
-import Waypoint from 'react-waypoint';
+import { Waypoint } from 'react-waypoint';
 
 import GradientTitle from '../front/GradientTitle';
 import WorkList from '../front/WorkList';
@@ -16,9 +16,6 @@ export default class WorkPage extends React.Component {
   beginColor = "#397f00";
   endColor = "#9ecc00";
 
-  componentDidMount() {
-    $(document).foundation();
-  }
   clientsWayPoint = () => {
     this.setState(() => ({showClients: true}));
   }

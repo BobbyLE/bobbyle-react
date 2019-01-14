@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import Waypoint from 'react-waypoint';
+import  { Waypoint } from 'react-waypoint';
 
 import GradientTitle from '../front/GradientTitle';
 import PerspectiveCard from '../front/PerspectiveCard';
@@ -10,9 +10,6 @@ export default class AboutPage extends React.Component {
     showExperience: false,
     showSkills: false,
     showResume: false
-  }
-  componentDidMount() {
-    $(document).foundation();
   }
   experienceWayPoint = () => {
     this.setState(() => ({showExperience: true}));
@@ -58,7 +55,7 @@ export default class AboutPage extends React.Component {
             <p>When I'm not coding, you'll find me taking <Link to="#">photos</Link> or playing Volley-Ball & Guitar.</p>
           </section>
         </section>
-        <section className={"experiences animatedFadeInUp animated" + (this.state.showExperience && ' fadeInUp')}>
+        <section className={`experiences animatedFadeInUp animated ${this.state.showExperience ? 'fadeInUp' : ''}`}>
           <Waypoint onEnter={this.experienceWayPoint} />
           <h3 className="section-title">Experiences</h3>
           <dl>
@@ -92,7 +89,7 @@ export default class AboutPage extends React.Component {
             <dd>2010 & 2011</dd>
           </dl>
         </section>
-        <section className={"skills animatedFadeInUp animated" + (this.state.showSkills && ' fadeInUp')}>
+        <section className={`skills animatedFadeInUp animated ${this.state.showSkills ? 'fadeInUp' : ''}`}>
           <Waypoint onEnter={this.skillsWayPoint} />
           <h3 className="section-title">Skills</h3>
           <dl>
@@ -148,7 +145,7 @@ export default class AboutPage extends React.Component {
             <dd>Lightroom</dd>
           </dl>
         </section>
-        <section className={"resume animatedFadeInUp animated" + (this.state.showResume && ' fadeInUp')}>
+        <section className={`resume animatedFadeInUp animated ${this.state.showResume ? 'fadeInUp' : ''} `}>
           <Waypoint onEnter={this.resumeWayPoint} />
           <div className="resume__link">
             <a href="/Bobby_Le_Resume.pdf" target="_blank">

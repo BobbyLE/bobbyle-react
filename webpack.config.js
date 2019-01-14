@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -12,7 +13,9 @@ if (process.env.NODE_ENV === 'test') {
 
 module.exports = (env) => {
   const isProduction = env === 'production';
-  const CSSExtract = new ExtractTextPlugin('styles.css');
+  const CSSExtractNew = new MiniCssExtractPlugin({
+    filename: 'styles.css'
+  });
 
   return {
     entry: ['babel-polyfill', './src/app.js'],
@@ -30,32 +33,31 @@ module.exports = (env) => {
         ]
       }, {
         test: /\.s?css$/,
-        use: CSSExtract.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'import-glob-loader',
-              options: {
-                sourceMap: true
-              }
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
             }
-          ]
-        })
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'import-glob-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ],
       }]
     },
     plugins: [
-      CSSExtract,
+      CSSExtractNew,
       new webpack.DefinePlugin({
         'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
         'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
@@ -70,13 +72,17 @@ module.exports = (env) => {
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"
+      }),
+      new HtmlWebpackPlugin({
+        template: './public/index.html',
+        filename: './index.html'
       })
     ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
-      contentBase: path.join(__dirname, 'public'),
+      static: path.join(__dirname, 'public'),
       historyApiFallback: true,
-      publicPath: '/dist/'
+      compress: true,
     }
   };
 };

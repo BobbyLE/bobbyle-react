@@ -17,7 +17,7 @@ test('should throw error if empty value of full name', () => {
   wrapper.find('form').at(0).simulate('submit', {
     preventDefault: () => {}
   });
-  expect(wrapper.state().errors.name).toBe('* Do not leave blank');
+  expect(wrapper.state().errors.name).toBe('* Must not be empty');
 });
 
 test('should throw error if empty value of message', () => {
@@ -27,7 +27,7 @@ test('should throw error if empty value of message', () => {
   wrapper.find('form').at(0).simulate('submit', {
     preventDefault: () => {}
   });
-  expect(wrapper.state().errors.message).toBe('* Do not leave blank');
+  expect(wrapper.state().errors.message).toBe('* Must not be empty');
 });
 
 test('should throw error if invalid value of email', () => {
@@ -37,5 +37,5 @@ test('should throw error if invalid value of email', () => {
   wrapper.find('form').at(0).simulate('submit', {
     preventDefault: () => {}
   });
-  expect(wrapper.state().errors.email).toBe('* Email is not valid');
+  expect(wrapper.state().errors.email).toBe('* Must be a valid Email');
 });

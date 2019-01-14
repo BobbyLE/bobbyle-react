@@ -11,8 +11,8 @@ export default class BodyClass extends React.Component {
   componentDidMount() {
     document.body.classList.add(this.props.nameClass);
   }
-  componentWillReceiveProps(nextProps) {
-    document.body.classList.add(nextProps.nameClass);
+  componentDidUpdate(props) {
+    document.body.classList.add(props.nameClass);
   }
   componentWillUnmount() {
     document.body.classList.remove(this.props.nameClass);
