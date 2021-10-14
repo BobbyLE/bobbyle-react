@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import ShadowWrapper from 'react-shadow-wrapper';
+import { Route } from 'react-router-dom';
 
 import BodyClass from './BodyClass';
 import Header from '../components/front/Header';
@@ -11,12 +10,12 @@ const FrontRoute = ({
   ...rest
 }) => (
   <Route {...rest} component={(props) => (
-      <ShadowWrapper>
+      <>
         <BodyClass nameClass="front"/>
         <Header />
         <Component {...props} />
         <Footer />
-      </ShadowWrapper>
+      </>
     )
   } />
 );

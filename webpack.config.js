@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -13,51 +12,60 @@ if (process.env.NODE_ENV === 'test') {
 
 module.exports = (env) => {
   const isProduction = env === 'production';
-  const CSSExtractNew = new MiniCssExtractPlugin({
+  const CSSExtract = new MiniCssExtractPlugin({
     filename: 'styles.css'
   });
 
   return {
-    entry: ['babel-polyfill', './src/app.js'],
+    entry: ['./src/app.js'],
     output: {
+      publicPath: '/dist',
       path: path.join(__dirname, 'public', 'dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
+      clean: true,
+    },
+    resolve: {
+      extensions: ['.js', '.jsx']
     },
     module: {
-      rules: [{
-        loader: 'babel-loader',
-        test: /\.js$/,
-        include: [
-          path.join(__dirname, 'src'),
-          path.join(__dirname, 'node_modules', 'foundation-sites')
-        ]
-      }, {
-        test: /\.s?css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
+      rules: [
+        {
+          loader: 'babel-loader',
+          test: /\.(js|jsx)$/,
+          include: [
+            path.join(__dirname, 'src'),
+            path.join(__dirname, 'node_modules', 'foundation-sites')
+          ]
+        }, 
+        {
+          test: /\.s?css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                url: false,
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              }
+            },
+            {
+              loader: 'import-glob-loader',
+              options: {
+                sourceMap: true
+              }
             }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'import-glob-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ],
-      }]
+          ],
+        }
+      ]
     },
     plugins: [
-      CSSExtractNew,
+      CSSExtract,
       new webpack.DefinePlugin({
         'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
         'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
@@ -73,16 +81,15 @@ module.exports = (env) => {
         $: "jquery",
         jQuery: "jquery"
       }),
-      new HtmlWebpackPlugin({
-        template: './public/index.html',
-        filename: './index.html'
-      })
     ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
-      static: path.join(__dirname, 'public'),
+      static: {
+        directory: path.join(__dirname, 'public'),
+      },
       historyApiFallback: true,
       compress: true,
+      open: true,
     }
   };
 };

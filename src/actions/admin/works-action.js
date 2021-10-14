@@ -36,7 +36,7 @@ export const removeWork = ({ id } = {}) => ({
 export const startRemoveWork = ({id, img} = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    storage.ref(`works/${img}`).delete().catch((error) => {
+    storage.refFromURL(img).delete().catch((error) => {
       console.log(error);
     });
     return database.ref(`users/${uid}/works/${id}`).remove().then(()=> {

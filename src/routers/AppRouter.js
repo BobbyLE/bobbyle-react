@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history'
-import ShadowWrapper from 'react-shadow-wrapper';
 
 //Admin
 import DashboardPage from '../components/admin/DashboardPage';
