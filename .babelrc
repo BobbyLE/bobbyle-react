@@ -4,7 +4,15 @@
     "@babel/preset-react"
   ],
   "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "@": "./src",
+        "@components": "./src/components"
+      }
+    }],
     "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-syntax-object-rest-spread"
+    "@babel/plugin-syntax-object-rest-spread",
+    "@babel/plugin-transform-runtime"
   ]
 }

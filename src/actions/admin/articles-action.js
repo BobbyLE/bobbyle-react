@@ -1,3 +1,4 @@
+import { ref, push, child, update, get, orderByChild} from 'firebase/database'
 import database from '../../firebase/firebase';
 
 
@@ -8,37 +9,41 @@ export const addArticle = (article) => ({
 });
 
 export const startAddArticle = (articleData = {}) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    const {
-      title = '',
-      categoryId = '',
-      body = '',
-      published = false
-    } = articleData;
-    const article = { 
-      title, 
-      categories : {
-        [categoryId]: true
-      },
-      body,
-      published
-    };
-
-    // Generate new push ID for the new article
-    const newArticleKey = database.ref(`users/${uid}`).child('articles').push().key;
-
-    // Write the new article's data simultaneously in the articles list and the category's article list
-    let updates = {};
-    updates[`users/${uid}/categories/${categoryId}/articles/${newArticleKey}`] = true;
-    updates[`users/${uid}/articles/${newArticleKey}`] = article;
-
-    return database.ref().update(updates).then(() => {
-      dispatch(addArticle({
+  return async (dispatch, getState) => {
+    try {
+      const uid = getState().auth.uid;
+      const {
+        title = '',
+        categoryId = '',
+        body = '',
+        published = false
+      } = articleData;
+      const article = { 
+        title, 
+        categories : {
+          [categoryId]: true
+        },
+        body,
+        published
+      };
+  
+      // Generate new push ID for the new article
+      // const newArticleKey = database.ref(`users/${uid}`).child('articles').push().key;
+      const newArticleKey = push(child(ref(database), `users/${uid}/articles`)).key
+  
+      // Write the new article's data simultaneously in the articles list and the category's article list
+      const updates = {};
+      updates[`users/${uid}/categories/${categoryId}/articles/${newArticleKey}`] = true;
+      updates[`users/${uid}/articles/${newArticleKey}`] = article;
+  
+      await update(ref(database), updates)
+      return dispatch(addArticle({
         id: newArticleKey,
         ...article
       }));
-    });
+    } catch(error) {
+      console.log(error)
+    }
   };
 };
 
@@ -58,34 +63,33 @@ export const startEditArticle = (id, article) => {
     body: article.body,
     published: article.published
   }
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    
-    //Edit article and simultaneously remove article from the old categories and add to new categories
-    let updates = {}
-    //Update article
-    updates[`users/${uid}/articles/${id}`] = updatedArticle;
-    //Remove article ID in each categories
-    database.ref(`users/${uid}/categories`).orderByChild('articles')
-      .once('value')
-      .then((snapshot) => {
-        snapshot.forEach( (childSnapshot) => {
-          const key = childSnapshot.key;
-          const val = childSnapshot.val();
-          if(val.articles) {
-            if(id in val.articles) {
-              updates[`users/${uid}/categories/${key}/articles/${id}`] = null;  
-            }
+  return async (dispatch, getState) => {
+    try {
+      const uid = getState().auth.uid;
+      
+      //Edit article and simultaneously remove article from the old categories and add to new categories
+      const updates = {}
+      //Update article
+      updates[`users/${uid}/articles/${id}`] = updatedArticle;
+      //Remove article ID in each categories
+      const snapshot = await get(ref(database, `users/${uid}/categories`), orderByChild('articles'))
+      snapshot.forEach( (childSnapshot) => {
+        const key = childSnapshot.key;
+        const val = childSnapshot.val();
+        if(val.articles) {
+          if(id in val.articles) {
+            updates[`users/${uid}/categories/${key}/articles/${id}`] = null;  
           }
-        });
-      }).then( () => {
-        // Add article id to category articles list
-        updates[`users/${uid}/categories/${article.categoryId}/articles/${id}`]  = true
-        //Finally Query update
-        return database.ref().update(updates).then(() => {
-          return dispatch(editArticle(id, article));
-        });
-      })
+        }
+      });
+      // Add article id to category articles list
+      updates[`users/${uid}/categories/${article.categoryId}/articles/${id}`]  = true
+      //Finally Query update
+      await update(ref(database), updates)
+      return dispatch(editArticle(id, article));
+    } catch(error) {
+      console.log(error)
+    }
   };
 };
 
@@ -96,31 +100,30 @@ export const removeArticle = ({id} = {}) => ({
   id
 });
 export const startRemoveArticle = ({id} = {}) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    // Remove both articles and category articles
-    let updates = {}
-    // Remove the article item
-    updates[`users/${uid}/articles/${id}`] = null;
-    database.ref(`users/${uid}/categories`).orderByChild('articles')
-      .once('value')
-      .then((snapshot) => {
-        snapshot.forEach( (childSnapshot) => {
-          const key = childSnapshot.key;
-          const val = childSnapshot.val();
-          if(val.articles) {
-            if(id in val.articles) {
-              // Add updates to remove articles in each categories
-              updates[`users/${uid}/categories/${key}/articles/${id}`] = null;  
-            }
+  return async (dispatch, getState) => {
+    try {
+      const uid = getState().auth.uid;
+      // Remove both articles and category articles
+      const updates = {}
+      // Remove the article item
+      updates[`users/${uid}/articles/${id}`] = null;
+      const snapshot = await get(ref(database, `users/${uid}/categories`), orderByChild('articles'))
+      snapshot.forEach( (childSnapshot) => {
+        const key = childSnapshot.key;
+        const val = childSnapshot.val();
+        if(val.articles) {
+          if(id in val.articles) {
+            // Add updates to remove articles in each categories
+            updates[`users/${uid}/categories/${key}/articles/${id}`] = null;  
           }
-        });
-      }).then( () => {
-        //Finally Query update delete
-        return database.ref().update(updates).then(() => {
-          return dispatch(removeArticle({id}));
-        });
-      })
+        }
+      });
+      //Finally Query update delete
+      await update(ref(database), updates)
+      return dispatch(removeArticle({id}));
+    } catch (error) {
+      console.log(error)
+    }
   } 
 };
 
@@ -131,17 +134,21 @@ export const setArticles = (articles) => ({
 });
 
 export const startSetArticles = () => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid ? getState().auth.uid : process.env.USER_ID;
-    return database.ref(`users/${uid}/articles`).once('value').then( (snapshot) => {
+  return async (dispatch, getState) => {
+    try {
+      const uid = getState().auth.uid ? getState().auth.uid : process.env.USER_ID;
+      const articlesRef = ref(database, `users/${uid}/articles`)
+      const getArticles = await get(articlesRef)
       const articles = [];
-      snapshot.forEach( (childSnapshot) => {
+      getArticles.forEach(childSnapshot => {
         articles.push({
           id: childSnapshot.key,
           ...childSnapshot.val() 
         });
       });
       dispatch(setArticles(articles));
-    });
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

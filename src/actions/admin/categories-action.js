@@ -1,5 +1,5 @@
-import uuid from 'uuid';
 import database from '../../firebase/firebase';
+import { ref, push, child, update, get, remove, set } from 'firebase/database'
 
 //ADD_CATEGORIES
 export const addCategory = (category) => ({
@@ -8,19 +8,23 @@ export const addCategory = (category) => ({
 });
 
 export const startAddCategory = (categoryData = {}) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    const {
-      name = ''
-    } = categoryData;
-    const category = { name };
-
-    return database.ref(`users/${uid}/categories`).push(category).then((ref) => {
-      dispatch(addCategory({
-        id: ref.key,
+  return async (dispatch, getState) => {
+    try {
+      const uid = getState().auth.uid;
+      const {
+        name = ''
+      } = categoryData;
+      const category = { name };
+  
+      const newCatKey = push(child(ref(database), `users/${uid}/categories`)).key
+      await update(ref(database, `users/${uid}/categories/${newCatKey}`), category)
+      return dispatch(addCategory({
+        id: newCatKey,
         ...category
       }));
-    });
+    } catch (error) {
+      console.log(error)
+    }
   };
 };
 
@@ -29,15 +33,18 @@ export const removeCategory = ({ id } = {}) => ({
   type: 'REMOVE_CATEGORY',
   id
 });
+
 export const startRemoveCategory = ({id} = {}) => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/categories/${id}`).remove().then(()=> {
-      dispatch(removeCategory({ id }));
-    });
+    try {
+      await remove(ref(database, `users/${uid}/categories/${id}`))
+      return dispatch(removeCategory({ id }))
+    } catch (error) {
+      console.log(error)
+    }
   } 
 };
-
 
 // EDIT_CATEGORY
 export const editCategory =  (id, updates) => ({
@@ -47,11 +54,14 @@ export const editCategory =  (id, updates) => ({
 })
 
 export const startEditCategory = (id, updates) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/categories/${id}`).update(updates).then(() => {
+  return async (dispatch, getState) => {
+    try {
+      const uid = getState().auth.uid;
+      await set(ref(database, `users/${uid}/categories/${id}`), updates)
       return dispatch(editCategory(id, updates));
-    });
+    } catch (error) {
+      console.log(error)
+    }
   };
 };
 
@@ -62,17 +72,21 @@ export const setCategories = (categories) => ({
 });
 
 export const startSetCategories = () => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid ? getState().auth.uid : process.env.USER_ID;
-    return database.ref(`users/${uid}/categories`).once('value').then( (snapshot) => {
-      const categories = [];
-      snapshot.forEach( (childSnapshot) => {
+  return async (dispatch, getState) => {
+    try {
+      const uid = getState().auth.uid ? getState().auth.uid : process.env.USER_ID;
+      const categoriesRef = ref(database, `users/${uid}/categories`)
+      const getCategories = await get(categoriesRef)
+      const categories = []
+      getCategories.forEach( (childSnapshot) => {
         categories.push({
           id: childSnapshot.key,
           ...childSnapshot.val() 
         });
       });
-      dispatch(setCategories(categories));
-    });
+      return dispatch(setCategories(categories));
+    } catch(error) {
+      console.log(error)
+    }
   }
 }

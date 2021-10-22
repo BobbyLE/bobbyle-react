@@ -1,9 +1,11 @@
 import React from 'react';
+import { ref, getDownloadURL } from 'firebase/storage'
+import FileUploader from '@components/FileUploader'
 import { storage } from '../../../firebase/firebase';
-import FileUploader from 'react-firebase-file-uploader';
 
 export default class WorkForm extends React.Component {
   state = {
+    error: '',
     title: this.props.work ? this.props.work.title : '',
     tags: this.props.work ? this.props.work.tags : '',
     img: this.props.work ? this.props.work.img : '',
@@ -19,9 +21,14 @@ export default class WorkForm extends React.Component {
     this.setState({isUploading: false});
     console.error(error);
   }
-  handleUploadSuccess = (filename) => {
+  handleUploadSuccess = async (filename) => {
     this.setState({img: filename, progress: 100, isUploading: false});
-    storage.ref('works').child(filename).getDownloadURL().then(url => this.setState({imgURL: url}));
+    try {
+      const downloadURL = await getDownloadURL(ref(storage, `works/${filename}`))
+      this.setState({imgURL: downloadURL})
+    } catch (error) {
+      console.log(error)
+    }
   };
   onTitleChange = (event) => {
     const title = event.target.value;
@@ -86,7 +93,7 @@ export default class WorkForm extends React.Component {
 
           <label>Image:</label>
           {this.state.isUploading &&
-            <p>Progress: {this.state.progress}</p>
+            <p>Progress: {this.state.progress} %</p>
           }
           {this.state.imgURL &&
             <img src={this.state.imgURL} />
@@ -95,7 +102,7 @@ export default class WorkForm extends React.Component {
             accept="image/*"
             name="img"
             randomizeFilename
-            storageRef={storage.ref('works')}
+            storageRef={ref(storage, 'works')}
             onUploadStart={this.handleUploadStart}
             onUploadError={this.handleUploadError}
             onUploadSuccess={this.handleUploadSuccess}

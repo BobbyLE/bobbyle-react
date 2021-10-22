@@ -25,7 +25,11 @@ module.exports = (env) => {
       clean: true,
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias : {
+        '@': path.resolve(__dirname, 'src'),
+        '@components': path.resolve(__dirname, 'src', 'components')
+      }
     },
     module: {
       rules: [
@@ -75,7 +79,9 @@ module.exports = (env) => {
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID),
         'process.env.GMAIL_ACCOUNT': JSON.stringify(process.env.GMAIL_ACCOUNT),
         'process.env.GMAIL_PASSWORD': JSON.stringify(process.env.GMAIL_PASSWORD),
-        'process.env.USER_ID': JSON.stringify(process.env.USER_ID)
+        'process.env.USER_ID': JSON.stringify(process.env.USER_ID),
+        'process.env.FIREBASE_LOGIN': JSON.stringify(process.env.FIREBASE_LOGIN),
+        'process.env.FIREBASE_PASSWORD': JSON.stringify(process.env.FIREBASE_PASSWORD)
       }),
       new webpack.ProvidePlugin({
         $: "jquery",

@@ -1,4 +1,5 @@
-import { firebase, googleAuthProvider } from '../../firebase/firebase';
+import { googleAuthProvider } from '../../firebase/firebase';
+import { signInWithEmailAndPassword, signOut } from "firebase/auth"
 
 export const login = ({uid, displayName, email, photoURL}) => ({
   type: 'LOGIN',
@@ -8,23 +9,11 @@ export const login = ({uid, displayName, email, photoURL}) => ({
   photoURL
 });
 
-export const startLogin = () => {
-  return () => {
-    return firebase.auth().signInWithPopup(googleAuthProvider);
-  };
-};
+export const startLoginWithEmail = (email, password) => 
+  () => signInWithEmailAndPassword(googleAuthProvider, email, password)
 
-export const startLoginWithEmail = (email, password) => {
-  return () => {
-    return firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password);
-  }
-}
 export const logout = () => ({
   type: 'LOGOUT'
 });
 
-export const startLogout = () => {
-  return () => {
-    return firebase.auth().signOut();
-  };
-};
+export const startLogout = () => () => signOut(googleAuthProvider)

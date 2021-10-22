@@ -12,7 +12,9 @@ import { login, logout } from './actions/admin/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
-import { firebase } from './firebase/firebase';
+import { googleAuthProvider } from './firebase/firebase';
+import { onAuthStateChanged } from "firebase/auth";
+
 import LoadingPage from './components/pages/LoadingPage';
 
 const store = configureStore();
@@ -32,7 +34,7 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
-firebase.auth().onAuthStateChanged((user) => {
+onAuthStateChanged(googleAuthProvider, (user) => {
   if (user) {
     store.dispatch(login(user));
     store.dispatch(startSetArticles());

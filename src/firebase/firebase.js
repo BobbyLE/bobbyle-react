@@ -1,4 +1,7 @@
-import * as firebase from 'firebase';
+import { initializeApp } from "firebase/app"
+import { getDatabase } from 'firebase/database'
+import { getAuth } from "firebase/auth"
+import { getStorage } from "firebase/storage";
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -9,10 +12,14 @@ const config = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
 
-firebase.initializeApp(config);
+const firebaseApp = initializeApp(config);
 
-const database = firebase.database();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-const storage = firebase.storage();
+const database = getDatabase();
+const googleAuthProvider = getAuth(firebaseApp);
+const storage = getStorage(firebaseApp);
 
-export { firebase, googleAuthProvider, storage, database as default };
+export { 
+  firebaseApp as firebase, 
+  googleAuthProvider, 
+  storage,
+  database as default };

@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { startLogin, startLoginWithEmail } from '../../actions/admin/auth';
-import LoginForm from './LoginForm';
+import { startLoginWithEmail } from '../../actions/admin/auth';
 
 export class LoginPage extends React.Component {
   static propTypes = {

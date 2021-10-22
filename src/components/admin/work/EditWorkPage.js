@@ -24,7 +24,7 @@ export class EditWorkPage extends React.Component {
     this.props.history.push('/admin/works');
   }
   handleRemoveWork = (event) => {
-    this.props.startRemoveWork({ id: this.props.work.id, img: this.props.work.imgURL });
+    this.props.startRemoveWork({ id: this.props.work.id, img: this.props.work.img });
     this.props.history.push('/admin/works');
   }
   render() {
