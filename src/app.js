@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import Foundation from 'foundation-sites';
 
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
@@ -34,23 +33,25 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
-onAuthStateChanged(googleAuthProvider, (user) => {
+const initDispatch = async (store) => {
+  return await Promise.all([
+    store.dispatch(startSetArticles()),
+    store.dispatch(startSetCategories()),
+    store.dispatch(startSetWorks())
+  ])
+}
+
+onAuthStateChanged(googleAuthProvider, async (user) => {
   if (user) {
-    store.dispatch(login(user));
-    store.dispatch(startSetArticles());
-    store.dispatch(startSetCategories());
-    store.dispatch(startSetWorks()).then( () => {
-      renderApp();
-      if (history.location.pathname === '/admin') {
-        history.push('/admin/dashboard');
-      }
-    });
+    store.dispatch(login(user))
+    await initDispatch(store)
+    renderApp();
+    if (history.location.pathname === '/admin') {
+      history.push('/admin/dashboard');
+    }
   } else {
     store.dispatch(logout());
-    store.dispatch(startSetArticles());
-    store.dispatch(startSetCategories());
-    store.dispatch(startSetWorks()).then( () => {
-      renderApp();
-    });
+    await initDispatch(store)
+    renderApp()
   }
 });
