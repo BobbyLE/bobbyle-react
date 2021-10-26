@@ -20,7 +20,7 @@ const OAuth2 = google.auth.OAuth2;
 
 app.use(express.static(publicPath));
 app.use(express.urlencoded({extended: true}));
-app.use(express.json()) // To parse the incoming requests with JSON payloads
+app.use(express.json())
 
 
 app.get('*', (req, res) => {
@@ -56,11 +56,11 @@ app.post('/send-email', asyncHandler(async(req, res) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: EMAIL_USER, //your gmail account you used to set the project up in google cloud console"
+        user: EMAIL_USER,
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
         refreshToken: REFRESH_TOKEN,
-        accessToken, //access token variable we defined earlier
+        accessToken,
       }
     })
 
@@ -77,10 +77,10 @@ app.post('/send-email', asyncHandler(async(req, res) => {
   }
     
   let mailOptions = {
-    from: req.body.cName, // sender address
-    to: emailTo, // list of receivers
-    subject: `Message via Bobby Le Portfolio de ${req.body.cName} <${req.body.cEmail}>`, // Subject line
-    text: req.body.cMessage, // plain text body
+    from: req.body.cName,
+    to: emailTo, 
+    subject: `Message via Bobby Le Portfolio de ${req.body.cName} <${req.body.cEmail}>`,
+    text: req.body.cMessage,
   };
 
 
@@ -88,10 +88,10 @@ app.post('/send-email', asyncHandler(async(req, res) => {
   console.log('Message %s sent: %s', sendEmailToMe.messageId, sendEmailToMe.response);
 
   let mailToSenderOptions = {
-    from: 'Bobby Le', // sender address
-    to: req.body.cEmail, // list of receivers
-    subject: `Your message to ${emailTo} via Bobby Le Portfolio has been successfully sent`, // Subject line
-    text: `Your message: ${req.body.cMessage}`, // plain text body
+    from: 'Bobby Le',
+    to: req.body.cEmail, 
+    subject: `Your message to ${emailTo} via Bobby Le Portfolio has been successfully sent`,
+    text: `Your message: ${req.body.cMessage}`,
   }
 
   const sendEmailToSender = await sendEmail(mailToSenderOptions)
